@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Boilerplate - Start</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./images/favicon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="./images/favicon.ico" sizes="any">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="./index.html" class="logo">Boilerplate</a>
+            <button class="menu-toggle" aria-label="Meny">☰</button>
+            <nav class="nav">
+                <a href="./index.html" class="active">Start</a>
+                <a href="./images.html">Bilder</a>
+                <a href="./process.html">Arbetsprocess</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <h1>Boilerplate</h1>
+            <p>En grund som kan byggas vidare i framtida projekt.</p>
+            <a href="./process.html" class="btn">Läs mer</a>
+        </section>
+
+        <!-- Info -->
+        <section class="container">
+            <h2>Om uppgiften</h2>
+            <p>
+                Syftet med den här uppgiften är att skapa en grundläggande <em>boilerplate</em>
+                för webbutveckling med hjälp av <strong>Node.js</strong> och moderna verktyg.
+                Att kunna arbeta effektivt genom att automatisera uppgifter som
+                minifiering av HTML, CSS och JavaScript, transpilering
+                samt optimering av bilder till moderna format som WebP och AVIF.
+            </p>
+            <p>
+                Lösningen ska ha en tydlig struktur för källfiler (<code>src</code>) och
+                publiceringsfiler (<code>dist</code>), och vara konfigurerad för automatisk
+                publicering vid uppdateringar i Git-repot. Den här demowebbplatsen visar en
+                möjlig grund att bygga vidare på för framtida projekt.
+            </p>
+        </section>
+
+        <section class="container list">
+            <article class="item">
+                <button class="item-header">Automatisering</button>
+                <div class="item-body">
+                    <p>Minifiering, transpilering och optimering av filer med ett kommando.</p>
+                </div>
+            </article>
+            <article class="item">
+                <button class="item-header">Bildoptimering</button>
+                <div class="item-body">
+                    <p>Automatisk konvertering till moderna format som WebP och AVIF.</p>
+                </div>
+            </article>
+            <article class="item">
+                <button class="item-header">Struktur</button>
+                <div class="item-body">
+                    <p>Klar mappstruktur för arbetsfiler och publiceringsfiler.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <small>&copy; <span id="year"></span> Boilerplate</small>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

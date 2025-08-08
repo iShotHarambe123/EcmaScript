@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boilerplate - Process</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./images/favicon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="./images/favicon.ico" sizes="any">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="./index.html" class="logo">Boilerplate</a>
+            <button class="menu-toggle" aria-label="Meny">☰</button>
+            <nav class="nav">
+                <a href="./index.html">Start</a>
+                <a href="./images.html">Bilder</a>
+                <a href="./process.html" class="active">Arbetsprocess</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero container">
+            <h1>Arbetsprocess</h1>
+            <p>Så här sattes boilerplaten upp, hur automatiseringen funkar och hur publiceringen är tänkt att ske.
+            </p>
+        </section>
+
+        <!-- Process -->
+        <section class="container">
+            <h2>Mål & krav</h2>
+            <p>
+                Skapa en enkel boilerplate för webbutveckling med <strong>HTML</strong>, <strong>CSS</strong> och
+                <strong>JavaScript</strong> som:
+                automatiserar minifiering/transpilering, optimerar bilder, har tydlig filstruktur (<code>src/</code>
+                → <code>dist/</code>),
+                och kan auto-publiceras via Git när koden mergas till huvud-branch.
+            </p>
+
+            <h2>Filstruktur</h2>
+            <pre><code>src/
+  index.html
+  images.html
+  process.html
+  css/style.css
+  js/script.js
+  images/ (originalbilder)
+</code></pre>
+
+            <h2>Verktyg</h2>
+            <ul>
+                <li><strong>Node.js + npm</strong> för scripts och paket.</li>
+                <li><strong>Parcel</strong> som bundler (dev-server, minifiering, transpilering, cache-busting).
+                </li>
+                <li><strong>Sharp</strong> för att generera <code>.avif</code> , <code>.webp</code> samt
+                    <code>.png</code> från
+                    originalbilder (JPG/PNG/SVG).
+                </li>
+                <li><strong>Git/GitHub</strong> för versionshantering och deployment-trigger.</li>
+                <li><strong>Netlify</strong> för hosting av webbplatsen.</li>
+            </ul>
+
+            <h2>Automatisering (scripts)</h2>
+            <p>Kör lokalt under utveckling och vid build/publicering:</p>
+            <pre><code>npm run dev     # startar utvecklingsserver (Parcel)
+npm run build   # bygger optimerat till dist/
+npm run images  # genererar .avif och .webp från src/images/*.jpg|png
+npm run favicon  # genererar .png från src/images/*.svg</code></pre>
+
+            <h2>Bildoptimering</h2>
+            <p>
+                Originalbilder läggs i <code>src/images/</code>. Ett Node-script (Sharp) skapar <code>.avif</code>
+                och <code>.webp</code>.
+                I HTML används <code>&lt;picture&gt;</code> med <em>AVIF</em> och <em>WebP</em> samt
+                JPG/PNG-fallback.
+            </p>
+            <pre><code>&lt;picture&gt;
+  &lt;source srcset="./images/img1.avif" type="image/avif"&gt;
+  &lt;source srcset="./images/img1.webp" type="image/webp"&gt;
+  &lt;img src="./images/img1.jpg" alt="Bild 1" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+
+            <p>
+                Faviconen skapas från en <code>favicon.svg</code> och konverteras till <code>favicon.png</code> med
+                <code>convert-favicon.js</code> via <code>npm run favicon</code>.
+                En <code>.ico</code>-version görs manuellt för äldre webbläsare. Alla tre formaten länkas i
+                <code>&lt;head&gt;</code> på varje sida.
+            </p>
+
+
+            <h2>Branching & commits</h2>
+            <ul>
+                <li>Dagligt arbete i <code>dev</code>. När en del är klar → merge till <code>main</code> för
+                    publicering.</li>
+                <li>Commit-stil: relativt små, logiska commits med t.ex.
+                    <code>feat</code>/<code>fix</code>/<code>chore</code>/<code>style</code>.
+                </li>
+            </ul>
+
+            <h2>Publicering (plan)</h2>
+            <p>
+                Koppla <code>main</code>-branchen till en host (Netlify). Vid push/merge
+                till <code>main</code>:
+                kör <code>npm ci</code>, <code>npm run images</code> (om man vill generera på servern) och
+                <code>npm run build</code>,
+                publicera sedan innehållet i <code>dist/</code>.
+            </p>
+
+            <h2>Hur man kör projektet</h2>
+            <pre><code>npm install
+npm run images   # valfritt under dev, men krävs om man vill ha AVIF/WebP lokalt
+npm run dev      # http://localhost:1234
+# För release:
+npm run build</code></pre>
+
+            <h2>Lärdomar / Motivering</h2>
+            <ul>
+                <li>Parcel ger minifiering och transpilering “out of the box” på build, mindre konfig att
+                    underhålla.</li>
+                <li>Sharp-scriptet gör bildflödet snabbt, jag lägger bara in en originalbild.</li>
+                <li>Simpel och minimal HTML/CSS/JS gör boilerplaten lätt att återanvända i nya projekt.</li>
+            </ul>
+
+            <h2>Checklista – verifiering</h2>
+            <ul>
+                <li>Build körd: <code>npm run build</code> (prod-läge).</li>
+                <li>HTML/CSS/JS minifierade i <code>dist/</code> (JS bundlat med hashade filnamn).</li>
+                <li>Transpilering aktiv via Parcel + <code>browserslist</code> (bakåtkompabilitet).</li>
+                <li>Bildoptimering: <code>&lt;picture&gt;</code> med <code>AVIF</code>/<code>WebP</code> + fallback
+                    fungerar.</li>
+                <li>Favicons på plats: <code>favicon.svg</code>, <code>favicon.png</code>, <code>favicon.ico</code>
+                    länkade i <code>&lt;head&gt;</code>.</li>
+                <li>Responsivitet testad (mobil/desktop), kodblock <code>&lt;pre&gt;</code>/<code>&lt;code&gt;</code>
+                    wrappar korrekt.</li>
+                <li>Navigation: <code>.active</code>-klass visar aktuell sida.</li>
+                <li>Git-flöde: arbete i <code>dev</code>, merge till <code>main</code> för release.</li>
+                <li>Deploy: Netlify byggde från <code>main</code> med <code>npm ci</code> + <code>npm run build</code>,
+                    publicerar <code>dist/</code>.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <small>&copy; <span id="year"></span> Boilerplate</small>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
