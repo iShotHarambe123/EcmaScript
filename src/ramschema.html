@@ -27,7 +27,36 @@
     </header>
 
     <main>
+        <!-- Hero -->
+        <section class="hero container">
+            <h1>Ramschema</h1>
+            <p>Ett interaktivt ramschema som visar programmets kurser.
+            </p>
+        </section>
 
+        <!-- Ramschema tabell -->
+        <section class="container ramschema">
+
+            <label for="search" class="search-label">Sök:</label>
+            <input id="search" class="input-search" type="search" placeholder="Sök efter kurskod eller kursnamn"
+                autocomplete="off" />
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th><button data-sort="code" class="th-link">Kurskod</button></th>
+                        <th><button data-sort="coursename" class="th-link">Namn</button></th>
+                        <th class="right"><button data-sort="progression" class="th-link">Progression</button></th>
+                    </tr>
+                </thead>
+                <tbody id="rows">
+                    <tr>
+                        <td>Laddar…</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </main>
 
 
