@@ -1,10 +1,15 @@
 import "./script.js"; // alltid laddad
+console.log('script.js loaded')
 
-// Importera endast ramschema.js om vi är på ramschema.html
-if (window.location.pathname.endsWith("ramschema.html")) {
-  import("./ramschema.js")
-    .then(module => {
-      console.log("Ramschema loaded");
-    })
-    .catch(err => console.error("Failed to load Ramschema:", err));
-}
+// src/js/main.js
+import { initRamschema } from './ramschema.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (location.pathname.endsWith('ramschema.html')) {
+    initRamschema();
+    console.log('ramschema.js loaded')
+  }
+});
+
+
+
