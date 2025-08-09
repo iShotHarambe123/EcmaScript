@@ -234,3 +234,51 @@ li code {
     border-radius: 4px;
     padding: .05em .35em;
 }
+
+/* RAMSCHEMA STYLES */
+
+.ramschema {
+    padding: 1rem 0 2rem;
+}
+
+.search-label {
+    display: block;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.input-search {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table thead th {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.table tbody td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.th-link {
+    all: unset;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+td:nth-child(3),
+th:nth-child(3) {
+    text-align: left;
+}
