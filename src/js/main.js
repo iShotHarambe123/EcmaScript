@@ -5,11 +5,13 @@ console.log('script.js loaded')
 import { initRamschema } from './ramschema.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (location.pathname.endsWith('ramschema.html')) {
+  const path = location.pathname;
+  if (path.endsWith('ramschema.html') || path.endsWith('ramschema') || path.endsWith('ramschema/')) {
     initRamschema();
-    console.log('ramschema.js loaded')
+    console.log('ramschema.js loaded');
   }
 });
+
 
 
 
